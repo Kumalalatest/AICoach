@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coach พลเมืองดิจิทัล</title>
+    <style>
+        /* โค้ดตกแต่งเว็บเล็กน้อย ไม่ต้องแก้ก็ได้ครับ */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ยินดีต้อนรับสู่ AI Coach พลเมืองดิจิทัล</h1>
+        <p>คลิกที่ไอคอนแชทมุมขวาล่างเพื่อเริ่มพูดคุยกับโค้ชได้เลยครับ</p>
+    </div>
+
+<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+<df-messenger
+  location="asia-southeast1"
+  project-id="wired-coder-477915-k0"
+  agent-id="4939e639-2564-4d2c-b652-573a10c3b6af"
+  language-code="th"
+  max-query-length="-1">
+  <df-messenger-chat-bubble
+    chat-title="DigitalCitizenshipCoach">
+  </df-messenger-chat-bubble>
+</df-messenger>
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #f3f6fc;
+    --df-messenger-message-user-background: #d3e3fd;
+    --df-messenger-message-bot-background: #fff;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
+
+
+</body>
+</html>
