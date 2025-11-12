@@ -18,14 +18,14 @@
         body {
             font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            background-color: #f0f4f8; /* Light blue-gray background */
+            background-color: #f0f4f8;
             display: flex;
             color: #333;
         }
 
         /* === Main Content Area (Left Side) === */
         .main-content {
-            width: calc(100% - 350px); /* Full width minus the chat panel width */
+            width: calc(100% - 350px);
             padding: 40px;
             box-sizing: border-box;
             display: flex;
@@ -42,7 +42,7 @@
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #1a3a6e; /* Dark professional blue */
+            color: #1a3a6e;
             margin-bottom: 16px;
         }
 
@@ -50,7 +50,30 @@
             font-size: 1.1rem;
             line-height: 1.7;
             color: #555;
+            margin-bottom: 24px; /* Adjusted margin */
+        }
+
+        /* === New Chat Button Styling (NEW) === */
+        .button-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
             margin-bottom: 32px;
+        }
+
+        .button-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .button-primary:active {
+            transform: scale(0.98);
         }
 
         /* === How to Use Section === */
@@ -60,7 +83,7 @@
             padding: 24px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid #0056b3; /* Blue accent line */
+            border-left: 5px solid #0056b3;
         }
 
         .instructions h2 {
@@ -91,7 +114,7 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background-color: #007bff; /* Bright blue */
+            background-color: #007bff;
             color: white;
             font-weight: 700;
             margin-right: 16px;
@@ -105,9 +128,8 @@
             }
             .main-content {
                 width: 100%;
-                height: 100vh; /* Full height for scrolling */
+                height: 100vh;
             }
-            /* Hides the main content when chat is open on mobile for better experience */
             body:has(df-messenger[open]) .main-content {
                 display: none;
             }
@@ -122,13 +144,12 @@
             right: 0;
             top: 0;
             width: 350px;
-            /* --- Custom Blue Theme for Chat --- */
             --df-messenger-font-color: #333;
             --df-messenger-font-family: 'Sarabun', Google Sans, sans-serif;
             --df-messenger-chat-background: #ffffff;
-            --df-messenger-message-user-background: #e0f0ff; /* Light blue for user messages */
-            --df-messenger-message-bot-background: #f0f4f8; /* Light gray-blue for bot messages */
-            --df-messenger-header-background: #0056b3; /* Strong blue for header */
+            --df-messenger-message-user-background: #e0f0ff;
+            --df-messenger-message-bot-background: #f0f4f8;
+            --df-messenger-header-background: #0056b3;
             --df-messenger-header-font-color: #ffffff;
             --df-messenger-send-icon-color: #0056b3;
         }
@@ -145,37 +166,26 @@
                 <p>
                     ยินดีต้อนรับสู่ผู้ช่วย AI อัจฉริยะ ที่จะทำหน้าที่เป็นโค้ชส่วนตัว
                     ช่วยนำทางให้น้องๆ ได้เรียนรู้และเข้าใจทักษะความเป็นพลเมืองดิจิทัล
-                    ผ่านการพูดคุยและตั้งคำถามชี้นำ เพื่อให้น้องๆ ค้นพบคำตอบที่ดีที่สุดด้วยตัวเอง
+                    ผ่านการพูดคุยและตั้งคำถามชี้นำ
                 </p>
+                
+                <!-- New Chat Button (NEW) -->
+                <button id="new-chat-button" class="button-primary">เริ่มแชทใหม่</button>
             </header>
 
             <section class="instructions">
                 <h2>วิธีใช้งาน AI Coach</h2>
                 <ul>
-                    <li>
-                        <span class="step-number">1</span>
-                        <div><strong>เริ่มต้นบทสนทนา:</strong> ที่หน้าต่างแชทด้านขวามือ ลองเล่าปัญหาหรือเรื่องที่สงสัยให้โค้ชฟังได้เลย</div>
-                    </li>
-                    <li>
-                        <span class="step-number">2</span>
-                        <div><strong>ตัวอย่างการเริ่มคุย:</strong> "โดนเพื่อนแกล้งในเน็ต", "อยากจัดการเวลาเล่นเกม", "มีอีเมลแปลกๆ ส่งมา"</div>
-                    </li>
-                    <li>
-                        <span class="step-number">3</span>
-                        <div><strong>พูดคุยกับโค้ช:</strong> โค้ชจะไม่ได้ให้คำตอบโดยตรง แต่จะถามคำถามเพื่อกระตุ้นให้น้องๆ ได้คิดวิเคราะห์</div>
-                    </li>
-                    <li>
-                        <span class="step-number">4</span>
-                        <div><strong>ค้นพบคำตอบ:</strong> เป้าหมายคือการช่วยให้น้องๆ สามารถตัดสินใจและแก้ปัญหาในโลกดิจิทัลได้อย่างมั่นใจ</div>
-                    </li>
+                    <li><span class="step-number">1</span><div><strong>เริ่มต้นบทสนทนา:</strong> ที่หน้าต่างแชทด้านขวามือ ลองเล่าปัญหาหรือเรื่องที่สงสัยให้โค้ชฟังได้เลย</div></li>
+                    <li><span class="step-number">2</span><div><strong>ตัวอย่างการเริ่มคุย:</strong> "โดนเพื่อนแกล้งในเน็ต", "อยากจัดการเวลาเล่นเกม", "มีอีเมลแปลกๆ ส่งมา"</div></li>
+                    <li><span class="step-number">3</span><div><strong>พูดคุยกับโค้ช:</strong> โค้ชจะถามคำถามเพื่อกระตุ้นให้น้องๆ ได้คิดวิเคราะห์และค้นพบคำตอบด้วยตนเอง</div></li>
+                    <li><span class="step-number">4</span><div><strong>เริ่มคุยใหม่:</strong> หากต้องการล้างประวัติและเริ่มต้นใหม่ สามารถกดปุ่ม "เริ่มแชทใหม่" ด้านบนได้ตลอดเวลา</div></li>
                 </ul>
             </section>
         </div>
     </main>
 
-    <!-- ======================================================= -->
-    <!--  Dialogflow Messenger Function (Do Not Change)          -->
-    <!-- ======================================================= -->
+    <!-- Dialogflow Messenger Function (Do Not Change) -->
     <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
     <df-messenger
       location="asia-southeast1"
@@ -187,6 +197,45 @@
         chat-title="DigitalCitizenshipCoach">
       </df-messenger-chat>
     </df-messenger>
+    
+    <!-- ======================================================= -->
+    <!--  JavaScript for Resetting Chat (NEW)                    -->
+    <!-- ======================================================= -->
+    <script>
+        // รอให้หน้าเว็บโหลดเสร็จก่อนเริ่มทำงาน
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // หา element ของ Dialogflow Messenger และปุ่มที่เราสร้าง
+            const dfMessenger = document.querySelector('df-messenger');
+            const newChatButton = document.getElementById('new-chat-button');
+
+            // --- ฟังก์ชันสำหรับส่งคำสั่ง RESTART_CHAT ไปยัง AI ---
+            const restartChat = () => {
+                // สร้าง Event พิเศษเพื่อส่งไปที่ df-messenger
+                const event = new CustomEvent('df-request-sent', {
+                    detail: {
+                        payload: 'RESTART_CHAT'
+                    }
+                });
+                dfMessenger.dispatchEvent(event);
+            };
+
+            // --- ส่วนที่ 1: ล้างแชทเมื่อหน้าเว็บโหลด/รีเฟรช ---
+            // เรารอให้ df-messenger โหลดเสร็จสมบูรณ์ก่อน (df-messenger-loaded)
+            dfMessenger.addEventListener('df-messenger-loaded', function (event) {
+                console.log('Dialogflow Messenger is loaded. Restarting chat...');
+                restartChat();
+            });
+
+            // --- ส่วนที่ 2: เพิ่ม Event Listener ให้กับปุ่ม "เริ่มแชทใหม่" ---
+            // เมื่อมีการคลิกที่ปุ่ม ให้เรียกใช้ฟังก์ชัน restartChat
+            newChatButton.addEventListener('click', function() {
+                // เปิดหน้าต่างแชทขึ้นมา (ถ้ามันปิดอยู่)
+                dfMessenger.setAttribute('expand', 'true');
+                restartChat();
+            });
+        });
+    </script>
     <!-- ======================================================= -->
 
 </body>
