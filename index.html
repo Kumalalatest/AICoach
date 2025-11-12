@@ -114,25 +114,42 @@
     </df-messenger>
     
     <!-- ======================================================= -->
-    <!--  JavaScript for Resetting Chat (Corrected Version)      -->
+    <!--  JavaScript for Resetting Chat (localStorage Version)   -->
     <!-- ======================================================= -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- ส่วนที่ 1: ล้างประวัติแชทเก่าทุกครั้งที่โหลดหน้า ---
-            // Dialogflow Messenger เก็บข้อมูลเซสชันไว้ใน sessionStorage ด้วย key นี้
-            // การลบ key นี้ทิ้งไป คือการบังคับให้เริ่มเซสชันใหม่เสมอ
-            sessionStorage.removeItem('df-messenger.session-id');
+            // ฟังก์ชันสำหรับล้างประวัติแชทและโหลดหน้าใหม่
+            const startNewChat = () => {
+                // ค้นหา key ทั้งหมดใน localStorage ที่เกี่ยวข้องกับ Dialogflow Messenger
+                Object.keys(localStorage).forEach(key => {
+                    if (key.startsWith('df-messenger')) {
+                        localStorage.removeItem(key);
+                    }
+                });
+                // สั่งให้เบราว์เซอร์โหลดหน้าเว็บใหม่ทั้งหมด
+                location.reload();
+            };
+
+            // เช็คว่าหน้าเว็บนี้ถูกโหลดมาจากการกดปุ่ม "เริ่มแชทใหม่" หรือไม่
+            // เราใช้ URL parameter ง่ายๆ ชื่อ 'newChat' ในการตรวจสอบ
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('newChat')) {
+                // ถ้ามี, ให้ลบข้อมูลใน localStorage ทิ้ง
+                Object.keys(localStorage).forEach(key => {
+                    if (key.startsWith('df-messenger')) {
+                        localStorage.removeItem(key);
+                    }
+                });
+                // จากนั้นลบ parameter ออกจาก URL เพื่อไม่ให้การรีเฟรชครั้งต่อไปทำงานซ้ำ
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
 
             // หาปุ่ม "เริ่มแชทใหม่"
             const newChatButton = document.getElementById('new-chat-button');
 
-            // --- ส่วนที่ 2: เมื่อคลิกปุ่ม ให้ล้างประวัติแล้วโหลดหน้าใหม่ ---
+            // เมื่อคลิกปุ่ม ให้ไปยัง URL ปัจจุบันพร้อมกับเพิ่ม parameter 'newChat=true'
             newChatButton.addEventListener('click', function() {
-                // ลบข้อมูลเซสชันอีกครั้ง (เผื่อไว้)
-                sessionStorage.removeItem('df-messenger.session-id');
-                // สั่งให้เบราว์เซอร์โหลดหน้าเว็บใหม่ทั้งหมด
-                location.reload();
+                window.location.href = window.location.pathname + '?newChat=true';
             });
         });
     </script>
